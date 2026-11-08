@@ -35,13 +35,10 @@ jobs:
       - name: Make Gradlew Executable
         run: chmod +x gradlew
 
-      - name: Build Debug APK with Retry
-        uses: nick-invision/retry@v3
-        with:
-          timeout_minutes: 15
-          max_attempts: 3
-          retry_wait_seconds: 10
-          command: ./gradlew assembleDebug
+      - name: Build Debug APK with Stacktrace
+        run: ./gradlew assembleDebug --stacktrace --info
+        env:
+          TERM: dumb
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
