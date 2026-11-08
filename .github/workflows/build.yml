@@ -3,7 +3,7 @@ name: Build Mobile APK
 on:
   push:
     branches: [ main, master ]
-  workflow_dispatch: # Allows manual trigger from GitHub UI
+  workflow_dispatch:
 
 jobs:
   build:
@@ -19,10 +19,7 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
-
-      - name: Grant Execute Permission for Gradlew
+      - name: Make Gradlew Executable
         run: chmod +x gradlew
 
       - name: Build Debug APK
