@@ -19,6 +19,12 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: Configure Gradle Properties
+        run: |
+          mkdir -p ~/.gradle
+          echo "org.gradle.jvmargs=-Xmx3g -XX:+HeapDumpOnOutOfMemoryError" >> ~/.gradle/gradle.properties
+          echo "org.gradle.daemon=false" >> ~/.gradle/gradle.properties
+
       - name: Fix Gradlew Line Endings
         run: sed -i -e 's/\r$//' gradlew
 
